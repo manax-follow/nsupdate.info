@@ -7,3 +7,4 @@
 - ALLOWED_HOSTS = ['*'] in settings.dev
 - run as normal user (not root)
 - production docker-compose
+- update docs for docker
