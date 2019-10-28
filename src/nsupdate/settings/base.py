@@ -12,12 +12,18 @@ import os
 # To make this work, put a unique, long, random, secret string into your environment.
 # E.g. in ~/.bashrc: export SECRET_KEY="..."
 try:
-    SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 except KeyError:
     # if there is no SECRET_KEY in the environment, it will be just undefined and
     # Django will refuse running - except if you define it somehow else later (e.g. in
     # a local_settings.py file that imports this file).
     pass
+
+DEBUG = os.environ.get("DEBUG", default=False)
+
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default="localhost").split(" ")
 
 # service contact for showing on the "about" page:
 SERVICE_CONTACT = 'your_email AT example DOT com'
